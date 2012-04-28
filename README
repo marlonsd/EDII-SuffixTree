@@ -1,0 +1,18 @@
+// ------------------------------------------------------------
+//  Trabalho Estrutura de Dados II
+//
+// Aluno: Marlon da Silva Dias
+// GitHub: https://github.com/marlonsd/EDII-SuffixTree
+// README
+// ------------------------------------------------------------
+
+   O trabalho consiste na implementação de Árvore de Sufixo, e, encontrar
+a maior substring de uma palavra usando a árvore. Este é um trabalho
+desenvolvido para a disciplina de Estrutura da dedos do curso de Ciência
+da Computação da Universidade Federal de Pelotas.
+
+	Para compilar, usar no terminal:$ make
+	Para limpar, há dois comandos:	$ make clean
+									$ make txt
+	clean - remove os arquivos .o e o executável do programa
+	txt - remove os arquivos .txt
