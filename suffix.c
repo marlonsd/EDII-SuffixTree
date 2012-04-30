@@ -34,7 +34,7 @@ int insertSuffix(node *T, char *word){
 		}
 		palavra[k] = '\0';
 		
-		printf("%s\n", palavra);
+		//printf("%s\n", palavra);
 		
 		aux = insert(T, palavra);
 		
@@ -43,36 +43,40 @@ int insertSuffix(node *T, char *word){
 		}	
 	}
 	
-	printf("%x\n", T->key[2]);
+//	printf("%x\n", T->key[2]);
 	
-	printSuffix(T);
+//	printSuffix(T);
 	
 	return 1;
 }
 
 char *largestPalindrome(node *T, char *word, int size){
 	int i, j, k, pos;
-	char *largest, *aux_largest;
+	char *largest, *aux_largest, *aux_word;
 	node *pointer, *aux;
 	
 	if (!(largest = malloc(sizeof(char)*size))){
-		prinft("Falta de memória");
+		printf("Falta de memória");
 		exit(1);
 	}
 	
 	if (!(aux_largest = malloc(sizeof(char)*size))){
-		prinft("Falta de memória");
+		printf("Falta de memória");
 		exit(1);
 	}
 	
 	largest[0] = '\0';
 	
 	pointer = T;
+	printf("\n%d\n", size);
 	for (i = 0; i < size; i++){
+		//printf("\n-- %d\n", i);
 		aux = T;
 		pos = position(word[i]);
 		j = 0;
 		k = i;
+		//printf("%d ", j);
+
 		while(aux->key[pos]){
 			aux_largest[j] = word[k];
 			j++;
@@ -80,17 +84,28 @@ char *largestPalindrome(node *T, char *word, int size){
 			aux = aux->key[pos];
 			pos = position(word[k]);
 		}
+		
 		aux_largest[j] = '\0';
+
+		while (j > 0){
+			if (!palindrome(aux_largest)){
+				j--;
+				aux_largest[j] = '\0';
+			} else {
+				break;
+			}
+		}
+		
+		if (j > 1){
+			printf("%s\n", aux_largest);
+		}
+		
 		if (lenght(aux_largest) > lenght(largest)){
 			copy(largest, aux_largest); // largest = aux_largest
 		}
-		
-/*		if (word[i] == aux->character){
-			
-		}*/
 	}
 	
-	printf("%s\n", larges)
+	printf("\n%s\n", largest);
 }
 
 int lenght(char *word){
@@ -101,56 +116,46 @@ int lenght(char *word){
 	return i;
 }
 
-void printSuffix(node *T){
-	int i, j;
-	node *aux;
-	char *palavra, c;
-	
-	aux = T;
-	
-	if (!(palavra = malloc(sizeof(char)))){
-		printf("Faltou memória.\n");
-		exit(1);
-	}
-	
-	j = 0;
-	
-	printf("%x\n", aux->key[0]);
-	
-	while (aux->kids){
-		i = 0;
-
-		while(!aux->key[i]){
-			i++;
-		}
-		
-		switch(i){
-			case 0: c = 'A';
-				break;
-			case 1: c = 'C';
-				break;
-			case 2: c = 'G';
-				break;
-			case 3: c = 'T';
-				break;
-		}
-
-		printf("%c\n", c);
-		realloc(palavra, j);
-		palavra[j] = i + 'A';
-
-		aux = aux->key[i];
-		
-		j++;
-	}	
-}
-
-void copy(char *word, char *other_word){
+void copy(char *word, char *other_word){ // word = other_word;
 	int i, size;
 	
 	size = lenght(other_word);
 	
-	for (i = 0; i < size; i++){
+	for (i = 0; i < size+1; i++){
 		word[i] = other_word[i];
 	}
+}
+
+char *inverse(char *word){
+	int i, size;
+	char *inverso;
+	
+	size = lenght(word);
+	
+	if (!(inverso = malloc(sizeof(char)*(size + 1)))){
+		printf("Falta de memória.\n");
+		exit(1);
+	}
+	
+	for (i = 0; i < size; i++){
+		inverso[i] = word[size-i-1];
+	}
+	
+	return inverso;
+}
+
+int palindrome(char *word){
+	int i, size;
+	
+	size = lenght(word);
+
+//	printf("%s %s\n", word, other_word);
+	size--;
+	for (i = 0; i <= size/2; i++){
+		if (word [i] != word [size - i]){
+			return 0;
+		}
+	}
+	
+	return 1;
 }

@@ -17,6 +17,8 @@ int insertSuffix(node *T, char *word);
 char *largestPalindrome(node *T, char *word, int size);
 int lenght(char *word);
 void copy(char *word, char *other_word);
+char *inverse(char *word);
+int checkWords(char *word, char *other_word);
 //void printSuffix(node *T);
 
 #endif

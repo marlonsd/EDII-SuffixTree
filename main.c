@@ -42,18 +42,22 @@ int main(){
 	
 	size = lenght(palavra);
 	
-	if (!(inverso = malloc(sizeof(char)*(size + 1)))){
+	/*if (!(inverso = malloc(sizeof(char)*(size + 1)))){
 		printf("Falta de memória.\n");
 		exit(1);
 	}
 	
 	for (i = 0; i < size; i++){
 		inverso[i] = palavra[size-i-1];
-	}
+	}*/
+	
+	inverso = inverse(palavra);
+	
+	printf("%s %s", palavra, inverso);
 	
 	free(palavra);
 	
-	palavra = largestPalindrome(T, inverso, size);
+	palavra = largestPalindrome(raiz, inverso, size);
 	
 	if (op){
 		printf("v");

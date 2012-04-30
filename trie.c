@@ -43,7 +43,7 @@ int insert(node *T, char *word){
 	pointer = T;
 
 	for (i = 0; word[i] != '\0'; i++){
-		pos = positon(word[i]);
+		pos = position(word[i]);
 		if (pointer->key[pos]){
 			pointer = pointer->key[pos];
 		} else {
@@ -75,7 +75,7 @@ node *get(node *T, char *word){
 		return NULL;
 	} else {
 		while((word[i] != '\0') && (pointer)){
-			pos = positon(word[i]);
+			pos = position(word[i]);
 			pointer = pointer->key[pos];
 			i++;
 		}
@@ -134,7 +134,7 @@ int delete(node *T, char *word){
 int position(char c){
 	int pos;
 	
-	switch(word[i]){
+	switch(c){
 		case 'A': pos = 0;
 			break;
 		case 'C': pos = 1;
@@ -153,7 +153,7 @@ char letter(int pos){
 	
 	letra = '\0';
 	
-	switch(word[i]){
+	switch(pos){
 		case 0: letra = 'A';
 			break;
 		case 1: letra = 'C';
