@@ -34,8 +34,6 @@ int insertSuffix(node *T, char *word){
 		}
 		palavra[k] = '\0';
 		
-		//printf("%s\n", palavra);
-		
 		aux = insert(T, palavra);
 		
 		if (!aux){
@@ -43,17 +41,15 @@ int insertSuffix(node *T, char *word){
 		}	
 	}
 	
-//	printf("%x\n", T->key[2]);
-	
-//	printSuffix(T);
-	
 	return 1;
 }
 
-char *largestPalindrome(node *T, char *word, int size){
-	int i, j, k, pos;
+void *largestPalindrome(node *T, char *word, int size, node *P){
+	int i, j, k, pos, test;
 	char *largest, *aux_largest, *aux_word;
 	node *pointer, *aux;
+	
+	P = Trie();
 	
 	if (!(largest = malloc(sizeof(char)*size))){
 		printf("Falta de memória");
@@ -65,17 +61,20 @@ char *largestPalindrome(node *T, char *word, int size){
 		exit(1);
 	}
 	
+	if (!(aux_word = malloc(sizeof(char)*size))){
+		printf("Falta de memória");
+		exit(1);
+	}
+	
 	largest[0] = '\0';
 	
 	pointer = T;
 	printf("\n%d\n", size);
 	for (i = 0; i < size; i++){
-		//printf("\n-- %d\n", i);
 		aux = T;
 		pos = position(word[i]);
 		j = 0;
 		k = i;
-		//printf("%d ", j);
 
 		while(aux->key[pos]){
 			aux_largest[j] = word[k];
@@ -97,7 +96,8 @@ char *largestPalindrome(node *T, char *word, int size){
 		}
 		
 		if (j > 1){
-			printf("%s\n", aux_largest);
+			copy(aux_word, aux_largest);
+			insert(P, aux_word);
 		}
 		
 		if (lenght(aux_largest) > lenght(largest)){
@@ -105,7 +105,9 @@ char *largestPalindrome(node *T, char *word, int size){
 		}
 	}
 	
-	printf("\n%s\n", largest);
+	printf("\n-- Maior Palindroma:\n%s\n", largest);
+	printf("\n-- Todas as palavras palindormas:\n");
+	printTree(P);
 }
 
 int lenght(char *word){
@@ -149,7 +151,6 @@ int palindrome(char *word){
 	
 	size = lenght(word);
 
-//	printf("%s %s\n", word, other_word);
 	size--;
 	for (i = 0; i <= size/2; i++){
 		if (word [i] != word [size - i]){

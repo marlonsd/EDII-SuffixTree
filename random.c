@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_PALAVRA 1000
+#define MAX_PALAVRA 14000
 
 void gerarPalavra(int tamanho, char *palavra);
 
@@ -42,7 +42,8 @@ void gerarPalavra(int tamanho, char *palavra){
 	srand(time(NULL));
 
 	for (i = 0; i < tamanho; i++){
-		aux = rand() % 4;
+//		aux = rand() % 4;
+		aux = 0;
 		if (!aux){
 			palavra[i] = 'A';
 		} else {

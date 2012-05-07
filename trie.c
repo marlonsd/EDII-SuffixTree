@@ -26,7 +26,7 @@ node *Trie(){
 	
 	T->father = NULL;
 	
-	for (i = 0; i < 4; i++){
+	for (i = 0; i < 5; i++){
 		T->key[i] = NULL;
 	}
 	
@@ -56,6 +56,11 @@ int insert(node *T, char *word){
 			pointer->kids++;
 			pointer = aux;
 		}
+	}
+	
+	if (!pointer->key[4]){
+		pointer->key[4] = (node *) 1;
+		pointer->kids++;
 	}
 	
 	return 1;
@@ -104,15 +109,15 @@ int delete(node *T, char *word){
 	
 	aux = get(T, word);
 
-	if (aux && aux->key[26]){
-		aux->key[26] = NULL;
+	if (aux && aux->key[4]){
+		aux->key[4] = NULL;
 		aux->kids--;
 			
 		while (aux && (!aux->kids)){
 			father = aux->father;
 			i = 0;
 			
-			while((father->key[i] != aux) && (i < 26)){
+			while((father->key[i] != aux) && (i < 4)){
 				i++;
 			}
 			
@@ -128,6 +133,44 @@ int delete(node *T, char *word){
 	} else {
 		return 0;
 	}
+	return 1;
+}
+
+/* Deletar a palavra a partir de dado nodo */
+int erase (node* aux){
+	int i;
+	node *father;
+	
+	if (aux && aux->key[4]){
+		aux->key[4] = NULL;
+		aux->kids--;
+		//printf("\n%x\n", T);
+		while (aux->father && (!aux->kids)){
+			//printf("here2\n");
+//			printf("%d %x -- ", aux->kids, father);
+			father = aux->father;
+			i = 0;
+			
+			while((father->key[i] != aux) && (i < 4)){
+				i++;
+			}
+
+			father->key[i] = NULL;
+			father->kids--;
+			
+			if (aux->father){
+				free(aux);
+			}
+			
+			aux = father;
+//			printf("%d %x\n", aux->kids, aux->father);
+		}
+	} else {
+		return 0;
+	}
+	
+	//printf("returning\n");
+	
 	return 1;
 }
 
@@ -165,4 +208,49 @@ char letter(int pos){
 	}
 	
 	return letra;
+}
+
+int isEmpty (node *T){
+	int i;
+	i = 0;
+	
+	//printf("\n ** %d\n", T->kids);
+	
+	if (T->kids){
+		while (!(T->key[i]) && (i < 5)){
+			i++;
+		}
+		
+		if (i <= 4){
+			return 0;
+		}
+	}
+	
+	return 1;
+}
+
+void printTree(node* T){
+	int i;
+	node *aux;
+	
+	while(!(isEmpty(T))){  // enquanto árvore não vazia
+		//printf("%d\n", T->kids);
+
+		aux = T;
+		
+		while(!aux->key[4]){
+			i = 0;
+			
+			while ((!aux->key[i]) && (i < 4)){
+				//printf("passei\n");
+				i++;
+			}
+			
+			printf("%c", letter(i));
+			aux = aux->key[i];
+		}
+		//printf("%d\n", T->kids);
+		erase(aux);
+		printf("\n");
+	}
 }

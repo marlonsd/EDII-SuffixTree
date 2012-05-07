@@ -17,7 +17,7 @@
 int main(){
 	unsigned long int i;
 	int size;
-	node *raiz;
+	node *raiz, *palindroma;
 	char aux, op, sel, *palavra, *inverso;
 	
 	raiz = Trie();
@@ -40,30 +40,23 @@ int main(){
 	
 	op = insertSuffix(raiz, palavra);
 	
-	size = lenght(palavra);
-	
-	/*if (!(inverso = malloc(sizeof(char)*(size + 1)))){
-		printf("Falta de memória.\n");
-		exit(1);
-	}
-	
-	for (i = 0; i < size; i++){
-		inverso[i] = palavra[size-i-1];
-	}*/
-	
-	inverso = inverse(palavra);
-	
-	printf("%s %s", palavra, inverso);
-	
-	free(palavra);
-	
-	palavra = largestPalindrome(raiz, inverso, size);
-	
 	if (op){
-		printf("v");
+		size = lenght(palavra);
+	
+		inverso = inverse(palavra);
+		
+		printf("%s %s", palavra, inverso);
+		
+		free(palavra);
+		
+		//palavra = largestPalindrome(raiz, inverso, size, palindroma);
+		largestPalindrome(raiz, inverso, size, palindroma);
+		
 	} else {
 		printf("Falha ao gerar a árvore de sufixos");
 	}
+	
+	
 			
 	return 0;
 }

@@ -14,7 +14,7 @@
 #include "trie.h"
 
 int insertSuffix(node *T, char *word);
-char *largestPalindrome(node *T, char *word, int size);
+void *largestPalindrome(node *T, char *word, int size, node *P);
 int lenght(char *word);
 void copy(char *word, char *other_word);
 char *inverse(char *word);

@@ -16,3 +16,5 @@ da Computação da Universidade Federal de Pelotas.
 									$ make txt
 	clean - remove os arquivos .o e o executável do programa
 	txt - remove os arquivos .txt
+
+	Tamanho de palavra máximo testado funcional: 14000
