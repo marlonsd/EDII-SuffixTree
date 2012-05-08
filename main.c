@@ -12,7 +12,7 @@
 #include "trie.h"	// Implementação das funções da trie
 #include "suffix.h"
 
-#define TAM 35000
+#define TAM 14000
 
 int main(){
 	unsigned long int i;

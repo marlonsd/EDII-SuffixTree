@@ -229,15 +229,23 @@ int isEmpty (node *T){
 	return 1;
 }
 
-void printTree(node* T){
-	int i;
+void printTree(node* T, int size){
+	int i, j;
+	char *word;
 	node *aux;
+	
+	if(!(word = malloc(sizeof(char)*size))){
+		printf("Faltou memória.\n");
+		exit(1);
+	}
+	
+	//printf("\t-- %d", size);
 	
 	while(!(isEmpty(T))){  // enquanto árvore não vazia
 		//printf("%d\n", T->kids);
 
 		aux = T;
-		
+		j = 0;
 		while(!aux->key[4]){
 			i = 0;
 			
@@ -246,11 +254,17 @@ void printTree(node* T){
 				i++;
 			}
 			
-			printf("%c", letter(i));
+			//printf("%c", letter(i));
+			word[j] = letter(i);
 			aux = aux->key[i];
+			j++;
 		}
+		word[j] = '\0';
 		//printf("%d\n", T->kids);
+		if (lenght(word) == size){
+			printf("\n%s", word);
+		}
 		erase(aux);
-		printf("\n");
+		//printf("\n");
 	}
 }

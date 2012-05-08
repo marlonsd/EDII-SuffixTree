@@ -29,7 +29,7 @@ int delete(node *T, char *word);
 node *get(node *T, char *word);
 int erase(node* aux);
 int isEmpty (node *T);
-void printTree(node* T);
+void printTree(node* T, int size);
 
 /* Funções para tratamento dos caracteres */
 int position(char c);

@@ -104,10 +104,9 @@ void *largestPalindrome(node *T, char *word, int size, node *P){
 			copy(largest, aux_largest); // largest = aux_largest
 		}
 	}
-	
-	printf("\n-- Maior Palindroma:\n%s\n", largest);
-	printf("\n-- Todas as palavras palindormas:\n");
-	printTree(P);
+	printf("%d \n", lenght(largest));
+	printf("\n-- Maiores palindormas:");
+	printTree(P, lenght(largest));
 }
 
 int lenght(char *word){
@@ -152,10 +151,14 @@ int palindrome(char *word){
 	size = lenght(word);
 
 	size--;
-	for (i = 0; i <= size/2; i++){
+	/*for (i = 0; i <= size/2; i++){
 		if (word [i] != word [size - i]){
 			return 0;
 		}
+	}*/
+	
+	if (word[0] != word[size]){
+		return 0;
 	}
 	
 	return 1;

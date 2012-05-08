@@ -42,8 +42,8 @@ void gerarPalavra(int tamanho, char *palavra){
 	srand(time(NULL));
 
 	for (i = 0; i < tamanho; i++){
-//		aux = rand() % 4;
-		aux = 0;
+		aux = rand() % 4;
+		//aux = 0;
 		if (!aux){
 			palavra[i] = 'A';
 		} else {
