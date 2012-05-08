@@ -67,7 +67,6 @@ void *largestPalindrome(node *T, char *word, int size, node *P){
 	}
 	
 	largest[0] = '\0';
-	
 	pointer = T;
 	printf("\n%d\n", size);
 	for (i = 0; i < size; i++){
@@ -151,6 +150,7 @@ int palindrome(char *word){
 	size = lenght(word);
 
 	size--;
+	
 	/*for (i = 0; i <= size/2; i++){
 		if (word [i] != word [size - i]){
 			return 0;

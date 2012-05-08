@@ -17,4 +17,26 @@ da Computação da Universidade Federal de Pelotas.
 	clean - remove os arquivos .o e o executável do programa
 	txt - remove os arquivos .txt
 
-	Tamanho de palavra máximo testado funcional: 14000
+	Tamanho de palavra máximo suportado: 14000 caracteres
+	
+	O programa está construido para suportar palavras sobre o alfabeto
+A = {A, C, G, T}, respeitando o tamanho máximo citado a cima.
+	
+	Como saída, há da(s) maior(es) palíndroma(s).
+	
+	-- Algoritmo:
+	
+	Insere-se uma dada palavra em uma árvore de sufixo.
+Após a inserção, inverte-se a palavra e faz-se a busca dessa substrings
+em comum da palavra (na árvore) e da palavra invertida. Nem toda a substring
+em comum entre ela é palindroma, por isso, após encontrada a palavra, é feita
+a verificaçã se esta palavra é, de fato, uma palindroma. Se ela for de fato
+uma palindroma é inserida em uma árvore trie. Conforme as palindromas são
+encontradas é salvo em outra variável a maior de todas, com o intuito de
+controlar o tamanho da maior palíndroma. No fim, checa-se e imprime todas 
+as palíndromas do tamanho da maior, em ordem alfabética.
+
+	Para ser feita a impressão da trie, pega-se sempre o caminho mais a
+esquerda da árvore e "usa-se" (pode ser impressa ou não) essa palavra. Após
+o uso, ela é apagada. Volta-se para a raiz da árvore, enquanto a árvore não
+estiver vazia.

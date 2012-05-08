@@ -144,10 +144,7 @@ int erase (node* aux){
 	if (aux && aux->key[4]){
 		aux->key[4] = NULL;
 		aux->kids--;
-		//printf("\n%x\n", T);
 		while (aux->father && (!aux->kids)){
-			//printf("here2\n");
-//			printf("%d %x -- ", aux->kids, father);
 			father = aux->father;
 			i = 0;
 			
@@ -163,13 +160,10 @@ int erase (node* aux){
 			}
 			
 			aux = father;
-//			printf("%d %x\n", aux->kids, aux->father);
 		}
 	} else {
 		return 0;
 	}
-	
-	//printf("returning\n");
 	
 	return 1;
 }
@@ -214,8 +208,6 @@ int isEmpty (node *T){
 	int i;
 	i = 0;
 	
-	//printf("\n ** %d\n", T->kids);
-	
 	if (T->kids){
 		while (!(T->key[i]) && (i < 5)){
 			i++;
@@ -239,32 +231,25 @@ void printTree(node* T, int size){
 		exit(1);
 	}
 	
-	//printf("\t-- %d", size);
-	
 	while(!(isEmpty(T))){  // enquanto árvore não vazia
-		//printf("%d\n", T->kids);
-
 		aux = T;
 		j = 0;
 		while(!aux->key[4]){
 			i = 0;
 			
 			while ((!aux->key[i]) && (i < 4)){
-				//printf("passei\n");
 				i++;
 			}
 			
-			//printf("%c", letter(i));
 			word[j] = letter(i);
 			aux = aux->key[i];
 			j++;
 		}
 		word[j] = '\0';
-		//printf("%d\n", T->kids);
 		if (lenght(word) == size){
 			printf("\n%s", word);
 		}
 		erase(aux);
-		//printf("\n");
 	}
+	printf("\n");
 }

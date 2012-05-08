@@ -28,14 +28,13 @@ int main(){
 	}
 
 	i = 0;
-	
 	scanf("%c", &aux);
 	while(aux != '\n'){
 		palavra[i] = aux;
 		i++;
 		scanf("%c", &aux);
 	}
-	
+
 	palavra[i] = '\0';
 	
 	op = insertSuffix(raiz, palavra);
