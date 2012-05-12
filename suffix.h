@@ -19,6 +19,5 @@ int lenght(char *word);
 void copy(char *word, char *other_word);
 char *inverse(char *word);
 int checkWords(char *word, char *other_word);
-//void printSuffix(node *T);
 
 #endif

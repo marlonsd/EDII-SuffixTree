@@ -46,7 +46,6 @@ int main(){
 		
 		free(palavra);
 		
-		//palavra = largestPalindrome(raiz, inverso, size, palindroma);
 		largestPalindrome(raiz, inverso, size, palindroma);
 		
 	} else {
