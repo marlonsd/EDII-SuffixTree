@@ -68,7 +68,7 @@ void *largestPalindrome(node *T, char *word, int size, node *P){
 	
 	largest[0] = '\0';
 	pointer = T;
-	printf("\n%d\n", size);
+
 	for (i = 0; i < size; i++){
 		aux = T;
 		pos = position(word[i]);
@@ -94,17 +94,18 @@ void *largestPalindrome(node *T, char *word, int size, node *P){
 			}
 		}
 		
-		if (j > 1){
-			copy(aux_word, aux_largest);
-			insert(P, aux_word);
-		}
-		
 		if (lenght(aux_largest) > lenght(largest)){
 			copy(largest, aux_largest); // largest = aux_largest
+			/* Caso tenha uma palavra maior que anterior
+			 * limpar a trie para conter somente as maiores palíndromas */
+			emptyTree(P);
 		}
+		
+		copy(aux_word, aux_largest);
+		insert(P, aux_word);
 	}
-	printf("%d \n", lenght(largest));
-	printf("\n-- Maiores palindormas:");
+
+	printf("-- Maiores palindormas:");
 	printTree(P, lenght(largest));
 }
 

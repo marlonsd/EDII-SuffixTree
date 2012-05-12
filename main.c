@@ -12,7 +12,7 @@
 #include "trie.h"	// Implementação das funções da trie
 #include "suffix.h"
 
-#define TAM 14000
+#define TAM 15000
 
 int main(){
 	unsigned long int i;
@@ -43,8 +43,6 @@ int main(){
 		size = lenght(palavra);
 	
 		inverso = inverse(palavra);
-		
-		printf("%s %s", palavra, inverso);
 		
 		free(palavra);
 		

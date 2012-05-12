@@ -253,3 +253,24 @@ void printTree(node* T, int size){
 	}
 	printf("\n");
 }
+
+void emptyTree(node* T){
+	int i, j;
+	node *aux;
+	
+	while(!(isEmpty(T))){  // enquanto árvore não vazia
+		aux = T;
+		j = 0;
+		while(!aux->key[4]){
+			i = 0;
+			
+			while ((!aux->key[i]) && (i < 4)){
+				i++;
+			}
+			
+			aux = aux->key[i];
+			j++;
+		}
+		erase(aux);
+	}
+}

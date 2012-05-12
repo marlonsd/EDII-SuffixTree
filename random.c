@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_PALAVRA 14000
+#define MAX_PALAVRA 10000
 
 void gerarPalavra(int tamanho, char *palavra);
 
